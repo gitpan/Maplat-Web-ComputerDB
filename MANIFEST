@@ -1,0 +1,24 @@
+Changes
+devscripts/setversion.pl
+devscripts/updateClasses.pl
+lib/Maplat/Web/ComputerDB.pm
+lib/Maplat/Web/ComputerDB/Computers.pm
+lib/Maplat/Web/ComputerDB/GlobalCostunits.pm
+lib/Maplat/Web/ComputerDB/GlobalOperatingSystem.pm
+lib/Maplat/Web/ComputerDB/GlobalProdlines.pm
+lib/Maplat/Web/ComputerDB/Templates/computers_edit.tt
+lib/Maplat/Web/ComputerDB/Templates/computers_select.tt
+lib/Maplat/Web/ComputerDB/Templates/globalcostunits.tt
+lib/Maplat/Web/ComputerDB/Templates/globaloperatingsystem.tt
+lib/Maplat/Web/ComputerDB/Templates/globalprodlines.tt
+Makefile.PL
+makeppd.bat
+MANIFEST			This list of files
+MANIFEST.SKIP
+README
+t/02-webguicompile.t
+t/03-pod.t
+t/04-podcoverage.t
+t/30-perlcritic.t
+t/perlcriticrc
+META.yml                                 Module meta-data (added by MakeMaker)

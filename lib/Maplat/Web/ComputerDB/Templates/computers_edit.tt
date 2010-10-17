@@ -1,0 +1,186 @@
+[% IF statustext %]
+<p align="center">
+    <div class="[% statuscolor %]">[% statustext %]</div>
+</p>
+[% END %]
+
+
+<p align="center">
+	<table class="data" id="MainDataTable">
+		<tr class="tabheader">
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+
+		<form name="computeredit" method="post" action="[% webpath %]">
+			<tr>
+				<td>Hostname</td>
+				<td>
+					<input type="hidden" name="old_computer_name" value="[% computer.computer_name %]">
+					<input type="text" name="computer_name" size="30" maxLength="60" value="[% computer.computer_name %]">
+				</td>
+			</tr>
+			<tr>
+				<td>Cost Unit</td>
+				<td>
+					<select name="costunit">
+						[% FOREACH costunit IN costunits %]
+						<option value="[% costunit.costunit %]"
+							[% IF costunit.costunit == computer.costunit %]
+								selected="selected"
+							[% END %]
+							>[% costunit.costunit %] : [% costunit.line_id %] [% costunit.description %] 
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td><input type="text" name="description" size="30" maxLength="60" value="[% computer.description %]"></td>
+			</tr>
+			<tr>
+				<td>Int. network type</td>
+				<td>
+					<select name="net_internal_type">
+						[% FOREACH networktype IN networktypes %]
+						<option value="[% networktype %]"
+							[% IF networktype == computer.net_internal_type %]
+								selected="selected"
+							[% END %]
+							>[% networktype %]
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Int. IP</td>
+				<td><input type="text" name="net_internal_ip" size="30" maxLength="60" value="[% computer.net_internal_ip %]"></td>
+			</tr>
+			<tr>
+				<td>Int. MAC</td>
+				<td><input type="text" name="net_internal_mac" size="30" maxLength="60" value="[% computer.net_internal_mac %]"></td>
+			</tr>
+			
+			<tr>
+				<td>Ext. network type</td>
+				<td>
+					<select name="net_prod_type">
+						[% FOREACH networktype IN networktypes %]
+						<option value="[% networktype %]"
+							[% IF networktype == computer.net_prod_type %]
+								selected="selected"
+							[% END %]
+							>[% networktype %]
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Ext. IP</td>
+				<td><input type="text" name="net_prod_ip" size="30" maxLength="60" value="[% computer.net_prod_ip %]"></td>
+			</tr>
+			<tr>
+				<td>Ext. MAC</td>
+				<td><input type="text" name="net_prod_mac" size="30" maxLength="60" value="[% computer.net_prod_mac %]"></td>
+			</tr>			
+			
+			<tr>
+				<td>User</td>
+				<td><input type="text" name="account_user" size="30" maxLength="60" value="[% computer.account_user %]"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="text" name="account_password" size="30" maxLength="60" value="[% computer.account_password %]"></td>
+			</tr>
+			<tr>
+				<td>Domain</td>
+				<td>
+					<select name="account_domain">
+						[% FOREACH domain IN domains %]
+						<option value="[% domain %]"
+							[% IF domain == computer.account_domain %]
+								selected="selected"
+							[% END %]
+							>[% domain %]
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Computer Domain</td>
+				<td>
+					<select name="computer_domain">
+						[% FOREACH domain IN domains %]
+						<option value="[% domain %]"
+							[% IF domain == computer.computer_domain %]
+								selected="selected"
+							[% END %]
+							>[% domain %]
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Operating System</td>
+				<td>
+					<select name="operating_system">
+						[% FOREACH operating_system IN operating_systems %]
+						<option value="[% operating_system.operating_system %]"
+							[% IF operating_system.operating_system == computer.operating_system %]
+								selected="selected"
+							[% END %]
+							>[% operating_system.operating_system %]
+						</option>
+						[% END %]
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>Servicepack</td>
+				<td><input type="text" name="servicepack" size="30" maxLength="60" value="[% computer.servicepack %]"></td>
+			</tr>
+			
+			<tr>
+				<td>64 Bit</td>
+				<td>
+					<input type="checkbox" name="is_64bit"
+					[% IF computer.is_64bit == "1" %]
+						checked="checked"
+					[% END %]
+					>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>AntiVirus</td>
+				<td>
+					<input type="checkbox" name="has_antivirus"
+					[% IF computer.has_antivirus == "1" %]
+						checked="checked"
+					[% END %]
+					>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<input type="hidden" name="mode" id="editmode" value="[% EditMode %]">
+					<input type="reset" value="Reset">&nbsp;
+					[% IF EditMode == "create" %]
+						<input type="submit" value="Create">
+					[% ELSE %]
+						<input type="submit" value="Update">&nbsp;
+						<input type="submit" value="Delete" onClick="return confirmDeleteComputer('editmode');">
+					[% END %]
+				</td>
+			</tr>
+		</form>
+	</table>
+</p>

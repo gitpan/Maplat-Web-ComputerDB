@@ -1,0 +1,68 @@
+[% IF statustext %]
+<p align="center">
+    <div class="[% statuscolor %]">[% statustext %]</div>
+</p>
+[% END %]
+<p align="center">
+    <table class="data" id="MainDataTable">
+		<tr class="tabheader">
+				<th>Cost Unit</th>
+				<th>Line</th>
+				<th>Description</th>
+				<th>Coordinates</th>
+				<th></th>
+				<th></th>
+		</tr>
+		[% FOREACH costunit IN costunits %]
+		<form name="cclines_[% costunit.line_id %]" method="post" action="[% webpath %]">
+		<tr>
+				<td>[% costunit.costunit %]<input type="hidden" name="costunit" value="[% costunit.costunit %]"></td>
+				<td>
+					<select name="line_id">
+						[% FOREACH line IN lines %]
+							<option value="[% line.line_id %]"
+								[% IF costunit.line_id == line.line_id %]
+									selected="selected"
+								[% END %]
+							>
+							[% line.line_id %] : [% line.description %]
+							</option>
+						[% END %]
+					</select>
+				</td>
+				<td><input type="text" name="description" size="30" maxLength="60" value="[% costunit.description %]"></td>
+				<td><input type="text" name="coordinates" size="15" maxLength="60" value="[% costunit.coords %]"></td>
+				<td>
+						<input type="hidden" name="mode" value="changeline" id="mode_[% costunit.line_id %]">
+						<input type="submit" value="Change">
+				</td>
+				<td>
+					<input type="submit" value="Delete" onClick="return confirmDeleteLine('mode_[% costunit.line_id %]');">
+				</td>
+		</tr>
+		</form>
+		[% END %]
+		<form name="cclines_new" method="post" action="[% webpath %]">
+		<tr>
+				<td><input type="text" name="costunit" size="8" maxLength="20">
+				<td>
+					<select name="line_id">
+						<option value="" selected="selected"></option>
+						[% FOREACH line IN lines %]
+							<option value="[% line.line_id %]">[% line.line_id %] : [% line.description %]</option>
+						[% END %]
+					</select>
+				</td>
+				<td><input type="text" name="description" size="30" maxLength="60" value=""></td>
+				<td><input type="text" name="coordinates" size="15" maxLength="60" value=""></td>
+				<td>
+						<input type="hidden" name="mode" value="createline">
+						<input type="submit" value="Create">
+				</td>
+				<td></td>
+		</tr>
+		</form>
+    </table>
+	
+    
+</p>

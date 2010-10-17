@@ -1,0 +1,26 @@
+--- #YAML:1.0
+name:               Maplat-Web-ComputerDB
+version:            0.994
+abstract:           ~
+author:
+    - Rene Schickbauer <rene.schickbauer@gmail.com>
+license:            unknown
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+build_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    HTML::TableExtract:  0
+    Maplat:              0.994
+    PDF::Report:         0
+    Readonly:            0
+    WWW::Mechanize:      0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.56
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
